@@ -7,5 +7,5 @@ WORKDIR /app
 RUN set -eux; \
     npm install -g tree-cli
 
-# Default command
-CMD ["/bin/sh", "tree"]
+# Default command, use "tree" to see the directory structure
+CMD ["/usr/local/bin/tree"]
