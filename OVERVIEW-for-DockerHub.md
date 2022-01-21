@@ -1,4 +1,4 @@
-# johnfmorton/tree-clie
+# johnfmorton/tree-cli
 
 This image contains an installation of [Tree CLI]((https://github.com/MrRaindrop/tree-cli).
 
