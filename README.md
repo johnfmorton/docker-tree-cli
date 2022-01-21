@@ -3,24 +3,59 @@ This repo contains a Dockerfile for [Tree CLI](https://github.com/MrRaindrop/tre
 
 ## Description
 
-This Dockerfile contains [Tree CLI](https://github.com/MrRaindrop/tree-cli) and defaults to using node 16. You can change the node version by altering the tag passed into the Dockerfile.
+This Dockerfile contains [Tree CLI](https://github.com/MrRaindrop/tree-cli) and defaults to using node 16 in the container. You can change the node version by altering the tag passed into the Dockerfile.
 
 ## Basic usage
 
-From the command line, navigate to the directory containing the images you want to compress. Then run the following command.
+The default command in the Dockerfile is `/usr/local/bin/tree`.  From the command line, navigate to the directory containing the files you want to see in a tree and run the image like this:
 
 ```
-docker run --rm -it -v `pwd`:/app johnfmorton/tree
+docker run --rm -it -v `pwd`:/app johnfmorton/tree-cli
 ```
 
-The default command in the Dockerfile is `/bin/sh`, so you will be presented with a command prompt from within the container. You can now execute a squoosh-cli command.  For example:
+This command passes in a reference to the directory from which you are issuing the command and will return a tree structure showing the files in the directory.
+
+## Using an alias
+
+To use this Dockerfile as intended, you should create an alias. Use the method descriped in [Dock Life: Using Docker for All The Things!](https://nystudio107.com/blog/dock-life-using-docker-for-all-the-things).
+
+I've got an alias in my zsh configuration file, i.e. the .zshrc file, that allows me to use `tree` from my command line as if I had it installed on my local machine. Here is the alias.
 
 ```
-tree
+alias tree='f(){ docker run --rm -it -v "$PWD":/app johnfmorton/tree-cli tree "$@";  unset -f f; }; f'
 ```
 
-## Addition usage from the Github repo for Tree
+Now, even thought tree-cli has not been installed on your machine, you can run it from the command line as if it were installed. Here we pass in `-l 2` to tell tree to show 2 levels of files in the tree structure.
 
+```
+tree -l 2
+```
+
+That shows the following for this project's files.
+
+```
+/app
+├── CHANGELOG.md
+├── Dockerfile
+├── LICENSE.md
+├── NOTES.md
+├── OVERVIEW-for-DockerHub.md
+├── README.md
+├── my-directory
+|  ├── sample-file-2.md
+|  └── sample-file.txt
+├── social-image.png
+├── social-image.psd
+└── workspace.code-workspace
+
+directory: 1 file: 11
+```
+
+### Why does is say app as the root?
+
+Since this runs `tree-cli` within a container and not your actual filesystem, the root directory from within the container, `app`, is shown as your root directory name.
+
+## Addition usage reproduced from the Github repo for Tree
 ### use --help to list help info.
 
 ```
@@ -48,27 +83,8 @@ tree -l 2 -o out.txt
 use `-d` to show directories only.
 
 ```
-tree -l
+tree -d
 ```
-
-## Using an alias
-
-If you don't want to type that long docker command, use the method descriped in [Dock Life: Using Docker for All The Things!](https://nystudio107.com/blog/dock-life-using-docker-for-all-the-things).
-
-I've got an alias in my zsh configuration file, i.e. the .zshrc file, that allows me to use `tree-cli` from my command line as if I had it installed on my local machine.
-
-```
-alias tree='docker run --rm -it -v `pwd`:/app johnfmorton/tree-cli tree'
-```
-
-## Windows users
-
-I don't have a windows machine to test on, but I think you'll need to update the alias to use `"${CURDIR}"` as shown here.
-
-```
-alias squoosh-cli='docker run --rm -it -v "${CURDIR}":/app johnfmorton/tree-cli tree'
-```
-
 ## Future possible additions
 
-There's not anything on my radar to add to this project. If you've got an idea, please get in touch.
+This containe works for what I wanted to accomplish. Ideally it would report the name of your root directory instead of "app". I am not sure of a solution to that at the moment. If you have an idea though, please let me know.
