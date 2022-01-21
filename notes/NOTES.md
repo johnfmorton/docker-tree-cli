@@ -45,7 +45,7 @@ docker image ls | grep "tree"
 
 Now I see my 'treetest' and the 'johnfmorton/tree-cli'
 
-screenshot: https://share.jmx2.com/qEsFUb
+![build-iterm-21JAN2022.png](build-iterm-21JAN2022.png)
 
 This works, but it doesn't work with my alias currently. The arguments are causing an issue.
 
@@ -96,8 +96,8 @@ docker buildx build \
 --push \
 --no-cache \
 --platform linux/arm/v7,linux/arm64/v8,linux/amd64 \
---tag nystudio107/node-dev-base:14-alpine \
---tag nystudio107/node-dev-base:latest .
+--tag redacted/node-dev-base:14-alpine \
+--tag redacted/node-dev-base:latest .
 ```
 
 I then tried my own version:
@@ -126,4 +126,10 @@ I can see it by inspecting it. Note that --bootstrap isn’t needed, it just sta
 
 ```
 docker buildx inspect --bootstrap
+```
+
+Now, with a builder created, the command does work to build out the varios platform versions.
+
+```
+docker buildx build --push --no-cache --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag johnfmorton/tree-cli:dev --tag johnfmorton/tree-cli:latest .
 ```
