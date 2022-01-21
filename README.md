@@ -1,5 +1,5 @@
-# Docker Squoosh
-This repo contains a Dockerfile for [Tree CLI](https://github.com/MrRaindrop/tree-cli). You can find a respository of this image on Docker Hub at [johnfmorton/squoosh](https://hub.docker.com/repository/docker/johnfmorton/tree).
+# Docker Tree-CLI
+This repo contains a Dockerfile for [Tree CLI](https://github.com/MrRaindrop/tree-cli). You can find a respository of this image on Docker Hub at [johnfmorton/tree-cli](https://hub.docker.com/r/johnfmorton/tree-cli).
 
 ## Description
 
@@ -58,7 +58,7 @@ If you don't want to type that long docker command, use the method descriped in 
 I've got an alias in my zsh configuration file, i.e. the .zshrc file, that allows me to use `tree-cli` from my command line as if I had it installed on my local machine.
 
 ```
-alias tree='docker run --rm -it -v `pwd`:/app johnfmorton/tree'
+alias tree='docker run --rm -it -v `pwd`:/app johnfmorton/tree-cli tree'
 ```
 
 ## Windows users
@@ -66,7 +66,7 @@ alias tree='docker run --rm -it -v `pwd`:/app johnfmorton/tree'
 I don't have a windows machine to test on, but I think you'll need to update the alias to use `"${CURDIR}"` as shown here.
 
 ```
-alias squoosh-cli='docker run --rm -it -v "${CURDIR}":/app johnfmorton/squoosh squoosh-cli'
+alias squoosh-cli='docker run --rm -it -v "${CURDIR}":/app johnfmorton/tree-cli tree'
 ```
 
 ## Future possible additions
