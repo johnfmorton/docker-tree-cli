@@ -51,11 +51,13 @@ That shows the following for this project's files.
 directory: 1 file: 11
 ```
 
-### Why does is say app as the root?
+### Why does is say "app" as the root?
 
 Since this runs `tree-cli` within a container and not your actual filesystem, the root directory from within the container, `app`, is shown as your root directory name.
 
-## Addition usage reproduced from the Github repo for Tree
+## Addition usage
+
+See [Tree CLI](https://github.com/MrRaindrop/tree-cli) for the full documentation. Here are some commands to get you started, reproduced from the full documenation.
 ### use --help to list help info.
 
 ```
@@ -87,4 +89,4 @@ tree -d
 ```
 ## Future possible additions
 
-This containe works for what I wanted to accomplish. Ideally it would report the name of your root directory instead of "app". I am not sure of a solution to that at the moment. If you have an idea though, please let me know.
+This container works for what I wanted to accomplish. Ideally it would report the name of your root directory instead of "app". I am not sure of a solution to that at the moment. If you have an idea though, please let me know.
