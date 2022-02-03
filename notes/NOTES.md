@@ -128,7 +128,7 @@ I can see it by inspecting it. Note that --bootstrap isn’t needed, it just sta
 docker buildx inspect --bootstrap
 ```
 
-Now, with a builder created, the command does work to build out the varios platform versions.
+Now, with a builder created, the command does work to build out the varios platform versions. This will build and push to my Docker Hub repo all in one command.
 
 ```
 docker buildx build --push --no-cache --platform linux/arm/v7,linux/arm64/v8,linux/amd64 --tag johnfmorton/tree-cli:dev --tag johnfmorton/tree-cli:latest .

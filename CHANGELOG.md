@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+## 1.0.1 - 2022-02.03
+### Updated
+* The default command was updated from 'tree' to 'tree -l 2' so that one level of the directory structure is shown by default
 ## 1.0.0 - 2022-01.21
 ### Added
 * Initial release
